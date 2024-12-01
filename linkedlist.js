@@ -2,7 +2,7 @@ function Node(value, nextNode) {
   return { value, nextNode };
 }
 
-function LinkedList() {
+export function LinkedList() {
   let head = Node(null, null);
   let tail = Node(null, null);
 
@@ -119,14 +119,3 @@ function LinkedList() {
 
   return { append, prepend, getHead, getTail, size, at, pop, contains, find, toString };
 }
-
-const list = new LinkedList();
-
-list.append("dog");
-list.append("cat");
-list.append("parrot");
-list.append("hamster");
-list.append("snake");
-list.append("turtle");
-
-console.log(list.toString());
