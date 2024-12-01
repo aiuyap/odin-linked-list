@@ -103,7 +103,21 @@ function LinkedList() {
     return count;
   }
 
-  return { append, prepend, getHead, getTail, size, at, pop, contains, find };
+  function toString() {
+    let stringList = "";
+    const traverse = (head) => {
+      stringList += `( ${head.value} ) -> `;
+      if (head.nextNode === null) {
+        stringList += `null`;
+        return;
+      }
+      traverse(head.nextNode);
+    };
+    traverse(head);
+    return stringList;
+  }
+
+  return { append, prepend, getHead, getTail, size, at, pop, contains, find, toString };
 }
 
 const list = new LinkedList();
@@ -115,5 +129,4 @@ list.append("hamster");
 list.append("snake");
 list.append("turtle");
 
-console.log(list.getHead());
-console.log(list.find("scat"));
+console.log(list.toString());
