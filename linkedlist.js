@@ -60,7 +60,50 @@ function LinkedList() {
     return traverse(head, count);
   }
 
-  return { append, prepend, getHead, getTail, size, at };
+  function pop() {
+    tail.value = null;
+    const traverse = (head) => {
+      if (head.nextNode.value === null || head.nextNode.value === undefined) {
+        tail = head;
+        tail.nextNode = null;
+        return;
+      }
+      traverse(head.nextNode);
+    };
+    traverse(head);
+  }
+
+  function contains(value) {
+    const traverse = (head) => {
+      if (head.value === value) {
+        return true;
+      }
+      if (head.nextNode === null) {
+        return false;
+      }
+      return traverse(head.nextNode);
+    };
+    return traverse(head);
+  }
+
+  function find(value) {
+    let count = 0;
+    const traverse = (head) => {
+      if (head.value === value) {
+        return;
+      }
+      if (head.nextNode === null) {
+        count = null;
+        return;
+      }
+      count++;
+      traverse(head.nextNode);
+    };
+    traverse(head);
+    return count;
+  }
+
+  return { append, prepend, getHead, getTail, size, at, pop, contains, find };
 }
 
 const list = new LinkedList();
@@ -72,4 +115,5 @@ list.append("hamster");
 list.append("snake");
 list.append("turtle");
 
-console.log(list.at(5));
+console.log(list.getHead());
+console.log(list.find("scat"));
